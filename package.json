@@ -6,10 +6,11 @@
   "scripts": {
     "test": "jest",
     "test:staged": "jest --passWithNoTests",
-    "dev": "ts-node ./src/server.ts"
+    "dev": "ts-node ./src/server.ts",
+    "build": "tsc"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ygor Azambuja",
   "license": "ISC",
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
