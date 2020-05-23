@@ -1,0 +1,61 @@
+{
+  "swagger": "2.0",
+
+  "info": {
+    "description": "Simples API, desenvolvida para o desafio Bossabox-Backend.",
+    "version": "1.0.0",
+    "title": "VUTTR",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/tools": {
+      "get": {
+        "summary": "Return a list of tools",
+        "responses": {
+          "200": {
+            "description": "alguma descrição",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "add a new Tool",
+        "responses": {
+          "201": {
+            "description": "Tool added"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a tool",
+        "responses": {
+          "204": {
+            "description": "Code 204 - No Content - Tool has been Deleted"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a tool",
+        "responses": {
+          
+        }
+      }
+    }
+  }
+}
