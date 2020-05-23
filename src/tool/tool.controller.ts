@@ -19,8 +19,9 @@ class ToolController {
     request: Request,
     response: Response
   ): Promise<Response<ITool | void>> {
+    const tag = request.query.tag as string
     try {
-      const tools = await Tool.find({})
+      const tools = await Tool.find({ tags: tag })
       return response.status(200).send(tools)
     } catch (error) {
       return response.status(400)
