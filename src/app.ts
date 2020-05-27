@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 class App {
   public app: express.Application
@@ -13,6 +14,7 @@ class App {
     dotenv.config()
     this.mongooseConnect().catch(error => new Error(error))
     this.initializeControllers(controllers)
+    this.app.use(cors())
   }
 
   private initializeMiddlewares (): void {
@@ -26,16 +28,14 @@ class App {
   }
 
   private async mongooseConnect (): Promise<void> {
-    await mongoose.connect(process.env.MONGO_URL, {
+    await mongoose.connect('mongodb://db/bossabox-backend', {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
   }
 
   public listen (): void {
-    this.app.listen(this.port, () => {
-      console.log(`listening on port ${this.port}`)
-    })
+    this.app.listen(this.port)
   }
 }
 

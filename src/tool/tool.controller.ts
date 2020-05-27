@@ -20,11 +20,23 @@ class ToolController {
     response: Response
   ): Promise<Response<ITool | void>> {
     const tag = request.query.tag as string
-    try {
-      const tools = await Tool.find({ tags: tag })
-      return response.status(200).send(tools)
-    } catch (error) {
-      return response.status(400)
+
+    if (!(tag === undefined || tag === null)) {
+      try {
+        Tool.find({ tags: tag })
+          .then(data => response.status(200).send(data))
+          .catch(err => console.log(err))
+      } catch (error) {
+        return response.status(400)
+      }
+    } else {
+      try {
+        Tool.find({})
+          .then(data => response.status(200).send(data))
+          .catch(err => console.log(err))
+      } catch (error) {
+        return response.status(400)
+      }
     }
   }
 

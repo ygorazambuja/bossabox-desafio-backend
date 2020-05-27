@@ -4,7 +4,7 @@ export interface ITool extends Document {
   title: string
   link: string
   description: string
-  tags: [string]
+  tags: string[]
 }
 
 const ToolSchema: Schema = new Schema({
