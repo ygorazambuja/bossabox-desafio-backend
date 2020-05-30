@@ -6,14 +6,16 @@
   "scripts": {
     "test": "jest --no-cache --runInBand --forceExit --detectOpenHandles",
     "test:staged": "jest --passWithNoTests",
-    "dev": "ts-node ./src/server.ts",
+    "dev": "nodemon",
     "build": "tsc -b",
-    "prod": " tsc -b && node ./dist/src/server.js"
+    "prod": " tsc -b && node ./dist/src/server.js",
+    "watch": "ts-node --inspect src/server.ts"
   },
   "keywords": [],
   "author": "Ygor Azambuja",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/cors": "^2.8.6",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.6",
@@ -35,12 +37,14 @@
     "jest": "^26.0.1",
     "lint-staged": "^10.2.2",
     "mongodb-memory-server": "^6.6.1",
+    "nodemon": "^2.0.4",
     "supertest": "^4.0.2",
     "ts-jest": "^25.5.1",
     "ts-node": "^8.10.1",
     "typescript": "^3.9.2"
   },
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
