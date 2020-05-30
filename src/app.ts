@@ -7,7 +7,7 @@ class App {
   public app: express.Application
   public port: number
 
-  constructor (controllers, port) {
+  constructor (controllers, port: number) {
     this.app = express()
     this.port = port
     this.initializeMiddlewares()
@@ -28,10 +28,15 @@ class App {
   }
 
   private async mongooseConnect (): Promise<void> {
-    await mongoose.connect('mongodb://db/bossabox-backend', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
+    try {
+      await mongoose.connect(process.env.MONGO_URL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true
+      })
+    } catch (error) {
+      throw new Error(error)
+    }
   }
 
   public listen (): void {
