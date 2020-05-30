@@ -16,12 +16,12 @@ class ToolService {
     return await Tool.insertMany(tools)
   }
 
-  async getById (id): Promise<any> {
+  async getById (id: string): Promise<any> {
     return await Tool.findById({ _id: id })
   }
 
   async update (tool): Promise<any> {
-    return await Tool.update({ _id: tool._id }, tool)
+    return await Tool.updateOne({ _id: tool._id }, tool)
   }
 }
 

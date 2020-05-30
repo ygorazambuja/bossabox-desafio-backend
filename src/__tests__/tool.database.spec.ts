@@ -14,6 +14,7 @@ beforeAll(async () => {
   await mongoose.connect(
     mongoUri,
     {
+      useCreateIndex: true,
       useNewUrlParser: true,
       useUnifiedTopology: true
     },
@@ -121,8 +122,8 @@ describe('Simple CRUD Operations', () => {
       link: response.link,
       title: 'node rocks'
     })
-    const updatedTool = await toolServices.getById(response._id)
 
+    const updatedTool = await toolServices.getById(response._id)
     expect(updatedTool.title).toBe('node rocks')
     expect(updatedTool.description).toBe(tool.description)
     expect(updatedTool.tags).toHaveLength(4)
