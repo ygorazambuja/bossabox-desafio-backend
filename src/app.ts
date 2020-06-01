@@ -8,10 +8,12 @@ class App {
   public port: number
 
   constructor (controllers, port: number) {
+    dotenv.config()
+
     this.app = express()
     this.port = port
+
     this.initializeMiddlewares()
-    dotenv.config()
     this.mongooseConnect().catch(error => new Error(error))
     this.initializeControllers(controllers)
     this.app.use(cors())
