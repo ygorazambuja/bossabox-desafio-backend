@@ -6,6 +6,11 @@ class UserService {
     return await User.create(user)
   }
 
+  /**
+   *
+   * @param id
+   * @returns deleted User<IUserDocument>
+   */
   async delete (id: string): Promise<IUserDocument> {
     return await User.findOneAndDelete({ _id: id })
   }
@@ -22,7 +27,7 @@ class UserService {
     return await User.findById({ _id: id })
   }
 
-  async update (user): Promise<IUserDocument> {
+  async update (user): Promise<any> {
     return await User.updateOne({ _id: user._id }, user)
   }
 }
