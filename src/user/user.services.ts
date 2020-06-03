@@ -30,6 +30,10 @@ class UserService {
   async update (user): Promise<any> {
     return await User.updateOne({ _id: user._id }, user)
   }
+
+  async getByUsername (username): Promise<IUserDocument> {
+    return await User.findOne({ username }).select('+password')
+  }
 }
 
 export default new UserService()

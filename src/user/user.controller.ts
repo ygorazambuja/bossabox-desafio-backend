@@ -1,6 +1,7 @@
 import userServices from './user.services'
 import IUser from './user.interface'
 import express, { Request, Response } from 'express'
+
 class UserController {
   router = express.Router()
 
