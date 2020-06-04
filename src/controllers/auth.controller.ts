@@ -1,7 +1,8 @@
-import authServices from './auth.services'
+import authServices from '../services/auth.services'
 import express, { Request, Response } from 'express'
-import IUser from '../user/user.interface'
-import userServices from '../user/user.services'
+import IUser from '../interfaces/user.interface'
+import userServices from '../services/user.services'
+import AuthInterface from '../interfaces/auth.interface'
 
 class AuthController {
   router = express.Router()
@@ -22,7 +23,7 @@ class AuthController {
     const { username, password } = request.body
 
     try {
-      const resp = await authServices.logIn(username, password)
+      const resp: AuthInterface = await authServices.logIn(username, password)
       return response.status(200).send(resp)
     } catch (error) {
       return response.status(401).send(error)
@@ -37,13 +38,16 @@ class AuthController {
 
     try {
       const insertedUser = await userServices.insert(user)
-      const authentication = await authServices.logIn(
+      const authentication: AuthInterface = await authServices.logIn(
         insertedUser.username,
         insertedUser.password
       )
 
       return response.status(200).send(authentication)
     } catch (error) {
+      if (error.code === 11000) {
+        return response.status(500).send({ error: 'Duplicate Keys' })
+      }
       return response.status(500).send(error)
     }
   }

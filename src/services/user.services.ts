@@ -1,5 +1,5 @@
-import User, { IUserDocument } from './user.model'
-import IUser from './user.interface'
+import User, { IUserDocument } from '../models/user.model'
+import IUser from '../interfaces/user.interface'
 
 class UserService {
   async insert (user: IUser): Promise<IUserDocument> {

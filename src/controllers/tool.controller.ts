@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express'
-import Tool from './tool.model'
-import ITool from './tool.interface'
-import toolServices from './tool.services'
+import Tool from '../models/tool.model'
+import ITool from '../interfaces/tool.interface'
+import toolServices from '../services/tool.services'
 
 class ToolController {
   router = express.Router()

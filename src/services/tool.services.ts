@@ -1,4 +1,4 @@
-import Tool, { ITool } from '../tool/tool.model'
+import Tool, { ITool } from '../models/tool.model'
 class ToolService {
   async insert (tool): Promise<ITool> {
     return await Tool.create(tool)

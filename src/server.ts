@@ -1,8 +1,8 @@
 import App from './app'
-import ToolController from './tool/tool.controller'
-import UserController from './user/user.controller'
-import AuthController from './auth/auth.controller'
+import ToolController from './controllers/tool.controller'
+import UserController from './controllers/user.controller'
+import AuthController from './controllers/auth.controller'
 
-const app = new App([ToolController, UserController, AuthController], 3000)
+const app = new App([ToolController, UserController, AuthController])
 
-app.listen()
+export default app
