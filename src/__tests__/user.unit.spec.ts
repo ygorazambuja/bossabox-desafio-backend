@@ -41,7 +41,7 @@ afterAll(async () => {
   await mongoServer.stop()
 })
 
-describe('Simple User CRUD Operations', () => {
+describe('User Unit Testing', () => {
   it('should add a user', async () => {
     const user = genNewUser()
 

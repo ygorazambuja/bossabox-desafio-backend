@@ -29,7 +29,7 @@ afterAll(async () => {
   await mongoServer.stop()
 })
 
-describe('Simple CRUD Operations', () => {
+describe('User Unit Test', () => {
   it('should add a tool', async () => {
     const tool = {
       title: faker.lorem.word(),
@@ -115,13 +115,16 @@ describe('Simple CRUD Operations', () => {
 
     const response = await toolServices.insert(tool)
 
-    await toolServices.update({
+    const updateQueryResponse = await toolServices.update({
       _id: response._id,
       description: response.description,
       tags: response.tags,
       link: response.link,
       title: 'node rocks'
     })
+
+    expect(updateQueryResponse.n).toBe(1)
+    expect(updateQueryResponse.nModified).toBe(1)
 
     const updatedTool = await toolServices.getById(response._id)
     expect(updatedTool.title).toBe('node rocks')
@@ -131,5 +134,26 @@ describe('Simple CRUD Operations', () => {
     expect(updatedTool.link).toBe(tool.link)
     expect(updatedTool.__v).toBe(0)
     expect(updatedTool.id).not.toBeNull()
+  })
+  it('should receive an error when trying to update a tool with a wrong(but valid) _id', async () => {
+    const tool = {
+      title: faker.lorem.word(),
+      description: faker.lorem.paragraph(1),
+      tags: ['node', 'express', 'todo', 'organization'],
+      link: faker.internet.url()
+    }
+
+    const response = await toolServices.insert(tool)
+
+    const updateQueryResponse = await toolServices.update({
+      _id: '5ed7124d92cf81efc6008b25',
+      description: response.description,
+      tags: response.tags,
+      link: response.link,
+      title: 'node rocks'
+    })
+
+    expect(updateQueryResponse.n).toBe(0)
+    expect(updateQueryResponse.nModified).toBe(0)
   })
 })
