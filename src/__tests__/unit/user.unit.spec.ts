@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 
 import { MongoMemoryServer } from 'mongodb-memory-server'
-import userServices from '../services/user.services'
+import userServices from '../../services/user.services'
 import mongoose from 'mongoose'
 import * as faker from 'faker'
-import IUser from '../interfaces/user.interface'
+import IUser from '../../interfaces/user.interface'
 
 let mongoServer: MongoMemoryServer
 
