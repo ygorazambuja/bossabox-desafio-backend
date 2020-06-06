@@ -7,11 +7,11 @@ class App {
   public app: express.Application
   public port: number
 
-  constructor (controllers) {
+  constructor (controllers: any[], port) {
     dotenv.config()
 
     this.app = express()
-    this.port = 3000
+    this.port = port
 
     this.initializeMiddlewares()
     this.mongooseConnect().catch(error => new Error(error))
@@ -41,7 +41,7 @@ class App {
     }
   }
 
-  public listen (): void {
+  public start (): void {
     this.app.listen(this.port)
   }
 }
