@@ -1,7 +1,7 @@
 import userServices from '../services/user.services'
 import IUser from '../interfaces/user.interface'
 import express, { Request, Response } from 'express'
-import { verifyValidToken } from '../middleware/jwtMiddleware'
+// import { verifyValidToken } from '../middleware/jwtMiddleware'
 
 class UserController {
   router = express.Router()
@@ -11,7 +11,7 @@ class UserController {
   }
 
   initializeRoutes (): void {
-    this.router.get('/users', verifyValidToken, this.getUsers)
+    this.router.get('/users', this.getUsers)
     this.router.post('/users', this.addUser)
     this.router.delete('/users/:id', this.deleteUser)
     this.router.put('/users', this.updateUser)

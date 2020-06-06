@@ -1,14 +1,14 @@
-import Tool, { ITool } from '../models/tool.model'
+import Tool, { IToolDocument } from '../models/tool.model'
 class ToolService {
-  async insert (tool): Promise<ITool> {
+  async insert (tool): Promise<IToolDocument> {
     return await Tool.create(tool)
   }
 
-  async delete (id: string): Promise<ITool> {
+  async delete (id: string): Promise<IToolDocument> {
     return await Tool.findOneAndDelete({ _id: id })
   }
 
-  async getAll (): Promise<ITool[]> {
+  async getAll (): Promise<IToolDocument[]> {
     return await Tool.find()
   }
 

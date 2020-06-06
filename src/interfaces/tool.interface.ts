@@ -1,9 +1,8 @@
-interface Tool {
-  id: string
+interface ITool {
   title: string
   link: string
   description: string
-  tags: [string]
+  tags: string[]
 }
 
-export default Tool
+export default ITool

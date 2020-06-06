@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose'
 
-export interface ITool extends Document {
+export interface IToolDocument extends Document {
   title: string
   link: string
   description: string
@@ -14,4 +14,4 @@ const ToolSchema: Schema = new Schema({
   tags: { type: [String] }
 })
 
-export default mongoose.model<ITool>('Tool', ToolSchema)
+export default mongoose.model<IToolDocument>('Tool', ToolSchema)
