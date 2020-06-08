@@ -14,12 +14,12 @@ class App {
     this.port = port
 
     this.initializeMiddlewares()
-    this.mongooseConnect().catch(error => new Error(error))
+    this.mongooseConnect()
     this.initializeControllers(controllers)
     this.app.use(cors())
   }
 
-  private initializeMiddlewares (): void {
+  private initializeMiddlewares (): any {
     this.app.use(express.json())
   }
 
@@ -29,16 +29,15 @@ class App {
     })
   }
 
-  private async mongooseConnect (): Promise<void> {
-    try {
-      await mongoose.connect(process.env.MONGO_URL, {
+  private mongooseConnect (): any {
+    mongoose
+      .connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true
       })
-    } catch (error) {
-      throw new Error(error)
-    }
+      .then(_ => {})
+      .catch(err => console.log(err))
   }
 
   public start (): void {
