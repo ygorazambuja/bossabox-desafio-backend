@@ -19,7 +19,7 @@ class AuthService {
     try {
       const user = await userServices.getByUsername(username)
       if (user == null) {
-        return Error('Authentication Failed, user not found')
+        throw Error('Authentication Failed, user not found')
       }
       if (await compareSync(password, user.password)) {
         return {
@@ -27,7 +27,7 @@ class AuthService {
           token: this.generateToken({ id: user._id })
         }
       } else {
-        return Error('Authentication Failed, wrong password')
+        throw Error('Authentication Failed, wrong password')
       }
     } catch (error) {
       return new Error(error)

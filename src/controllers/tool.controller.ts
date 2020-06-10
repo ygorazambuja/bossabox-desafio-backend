@@ -28,19 +28,15 @@ class ToolController {
       try {
         Tool.find({ tags: tag })
           .then(data => response.status(200).send(data))
-          .catch(err => console.log(err))
+          .catch(err => console.error(err))
       } catch (error) {
         return response.status(400)
       }
     } else {
-      try {
-        toolServices
-          .getAll()
-          .then(data => response.status(200).send(data))
-          .catch(err => console.log(err))
-      } catch (error) {
-        return response.status(400)
-      }
+      toolServices
+        .getAll()
+        .then(data => response.status(200).send(data))
+        .catch(err => response.status(400).send(err))
     }
   }
 

@@ -8,7 +8,6 @@ export async function verifyValidToken (
 ): Promise<any> {
   const token = request.headers.authorization
   verify(token, process.env.SECRET, (err, decoded) => {
-    console.log(decoded)
     if (err !== null) {
       return response.status(401).send({ Error: 'No Authorization' })
     } else next()

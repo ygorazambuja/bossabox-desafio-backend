@@ -2,7 +2,6 @@ import authServices from '../services/auth.services'
 import express, { Request, Response } from 'express'
 import IUser from '../interfaces/user.interface'
 import userServices from '../services/user.services'
-import AuthInterface from '../interfaces/auth.interface'
 
 class AuthController {
   router = express.Router()
@@ -22,12 +21,11 @@ class AuthController {
   ): Promise<Response<any>> {
     const { username, password } = request.body
 
-    try {
-      const resp: AuthInterface = await authServices.logIn(username, password)
-      return response.status(200).send(resp)
-    } catch (error) {
-      return response.status(401).send(error)
-    }
+    const logIn = await authServices.logIn(username, password)
+
+    if (logIn === {}) {
+      return response.send({ Error: 'Authentication Failed, user not found' })
+    } else return response.send(logIn)
   }
 
   private async signIn (
@@ -38,12 +36,12 @@ class AuthController {
 
     try {
       const insertedUser = await userServices.insert(user)
-      const authentication: AuthInterface = await authServices.logIn(
-        insertedUser.username,
-        insertedUser.password
-      )
-
-      return response.status(200).send(authentication)
+      authServices
+        .logIn(insertedUser.username, request.body.password)
+        .then(data => {
+          return response.status(200).send(data)
+        })
+        .catch(err => response.status(500).send(err))
     } catch (error) {
       if (error.code === 11000) {
         return response.status(500).send({ error: 'Duplicate Keys' })

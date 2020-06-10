@@ -37,7 +37,7 @@ class App {
         useCreateIndex: true
       })
       .then(_ => {})
-      .catch(err => console.log(err))
+      .catch(err => console.error(err))
   }
 
   public start (): void {
