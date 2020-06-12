@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest --no-cache --runInBand --forceExit",
-    "test:staged": "jest --passWithNoTests",
+    "test": "NODE_ENV=test jest --no-cache --forceExit",
+    "test:staged": "jest",
     "dev": "nodemon",
     "build": "tsc -b",
     "prod": " tsc -b && node ./dist/src/server.js",
