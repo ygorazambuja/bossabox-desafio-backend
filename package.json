@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test jest --no-cache --forceExit",
-    "test:staged": "jest",
+    "test:staged": "jest --forceExit --no-cache",
     "dev": "nodemon",
     "build": "tsc -b",
     "prod": " tsc -b && node ./dist/src/server.js",
