@@ -55,9 +55,9 @@ describe('should test all authentication steps', () => {
   it('should have a authenticate failed, caused by password incorrect', async () => {
     const user = genNewUser()
     await userServices.insert(user)
-    const response: Error = await authServices.logIn(user.username, '123456')
+    const response = await authServices.logIn(user.username, '123456')
 
-    expect(response.message).toBe('Authentication Failed, wrong password')
+    expect(response.message).toBe('Authentication Failed, Wrong Password')
   })
 
   it('should have a authentication failed, caused by username inexistent', async () => {
