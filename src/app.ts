@@ -8,7 +8,9 @@ class App {
   public port: number
 
   constructor (controllers: any[], port) {
-    dotenv.config()
+    dotenv.config({
+      path: process.env.NODE_ENV === 'test' ? '.env.testing' : '.env'
+    })
 
     this.app = express()
     this.port = port
