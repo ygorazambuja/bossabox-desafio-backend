@@ -8,6 +8,7 @@
     "test:staged": "jest --forceExit --no-cache",
     "dev": "nodemon",
     "build": "tsc -b",
+    "start": "node dist/src/server.js",
     "prod": " tsc -b && node ./dist/src/server.js",
     "watch": "ts-node --inspect src/server.ts",
     "test:watch": "jest --watch"
