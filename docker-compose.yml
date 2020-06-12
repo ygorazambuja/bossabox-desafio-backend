@@ -3,15 +3,13 @@ version: '3'
 services:
   db:
     image: mongo
-    restart: always
-    ports:
-      - 27017:27017
+
   backend:
     image: node:14
     volumes:
-      - .:/backend
-    command: bash -c "cd /backend && npm install && npm run prod"
+      - ./:/backend
     ports:
-      - 3000:3000
+      - '3000:3000'
     depends_on:
       - db
+    command: bash -c 'cd /backend && yarn && yarn prod'
