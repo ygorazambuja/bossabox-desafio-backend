@@ -4,13 +4,16 @@ import * as faker from 'faker'
 import IUser from '../../interfaces/user.interface'
 import userServices from '../../services/user.services'
 import authServices from '../../services/auth.services'
+import dotenv from 'dotenv'
 
 let mongoServer: MongoMemoryServer
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 
 beforeAll(async () => {
-  require('dotenv').config()
+  dotenv.config({
+    path: '.env.testing'
+  })
   mongoServer = new MongoMemoryServer()
   const mongoUri = await mongoServer.getUri()
   await mongoose.connect(

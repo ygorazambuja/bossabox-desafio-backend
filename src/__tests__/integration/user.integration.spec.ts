@@ -8,12 +8,22 @@ import UserController from '../../controllers/user.controller'
 import IUser from '../../interfaces/user.interface'
 import userModel from '../../models/user.model'
 import userServices from '../../services/user.services'
+import dotenv from 'dotenv'
+
+import { MongoMemoryServer } from 'mongodb-memory-server'
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 
 let app
-
+let mongoServer
 beforeAll(async () => {
+  dotenv.config({
+    path: '.env.testing'
+  })
+  mongoServer = new MongoMemoryServer()
+  const mongoUri = await mongoServer.getUri()
+  process.env.MONGO_URL = mongoUri
+
   app = new App([UserController], 3000)
   await truncateTable()
 })

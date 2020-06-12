@@ -7,11 +7,19 @@ import ToolController from '../../controllers/tool.controller'
 import toolServices from '../../services/tool.services'
 import ITool from '../../interfaces/tool.interface'
 import toolModel from '../../models/tool.model'
+import dotenv from 'dotenv'
+import { MongoMemoryServer } from 'mongodb-memory-server'
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
-
+let mongoServer
 let app
 beforeAll(async () => {
+  dotenv.config({
+    path: '.env.testing'
+  })
+  mongoServer = new MongoMemoryServer()
+  const mongoUri = await mongoServer.getUri()
+  process.env.MONGO_URL = mongoUri
   app = new App([ToolController], 3000)
 })
 

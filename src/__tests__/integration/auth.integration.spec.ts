@@ -5,12 +5,22 @@ import supertest from 'supertest'
 import App from '../../app'
 import AuthController from '../../controllers/auth.controller'
 import authServices from '../../services/auth.services'
+import dotenv from 'dotenv'
+import { MongoMemoryServer } from 'mongodb-memory-server'
+import mongoose from 'mongoose'
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 
+let mongoServer: MongoMemoryServer
 let app
 
 beforeAll(async () => {
+  dotenv.config({
+    path: '.env.testing'
+  })
+  mongoServer = new MongoMemoryServer()
+  const mongoUri = await mongoServer.getUri()
+  process.env.MONGO_URL = mongoUri
   app = new App([AuthController], 3000)
 })
 
