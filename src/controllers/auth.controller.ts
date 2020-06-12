@@ -23,7 +23,7 @@ class AuthController {
 
     const logIn = await authServices.logIn(username, password)
 
-    if (logIn === {}) {
+    if (logIn instanceof Error) {
       return response.send({ Error: 'Authentication Failed, user not found' })
     } else return response.send(logIn)
   }

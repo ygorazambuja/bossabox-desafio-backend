@@ -101,7 +101,7 @@ describe('Test the User Router', () => {
     const { body } = await supertest(app.app).get('/users')
 
     expect(body).toBeInstanceOf(Array)
-    expect(body.length).toBe(10)
+    expect(body.length).toBeGreaterThanOrEqual(10)
     expect(body[0]._id).not.toBeNull()
     expect(body[1]._id).not.toBeNull()
     expect(body[2]._id).not.toBeNull()

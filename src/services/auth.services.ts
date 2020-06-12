@@ -16,21 +16,20 @@ class AuthService {
   }
 
   async logIn (username: string, password: string): Promise<any> {
-    try {
-      const user = await userServices.getByUsername(username)
-      if (user == null) {
-        throw Error('Authentication Failed, user not found')
+    const user = await userServices.getByUsername(username)
+    if (user === null) {
+      return Error('Authentication Failed, user not found')
+    }
+    const passwordCompare = await compareSync(password, user.password)
+
+    if (passwordCompare) {
+      const token = this.generateToken({ id: user._id })
+      return {
+        username: username,
+        token: token
       }
-      if (await compareSync(password, user.password)) {
-        return {
-          username: username,
-          token: this.generateToken({ id: user._id })
-        }
-      } else {
-        throw Error('Authentication Failed, wrong password')
-      }
-    } catch (error) {
-      return new Error(error)
+    } else {
+      return Error('Authentication Failed, Wrong Password')
     }
   }
 }
