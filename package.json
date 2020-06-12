@@ -6,6 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test jest --no-cache --forceExit",
     "test:staged": "jest --forceExit --no-cache",
+    "postinstall": "tsc -b",
     "dev": "nodemon",
     "build": "tsc -b",
     "start": "node dist/src/server.js",
