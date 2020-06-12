@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --no-cache --runInBand --forceExit --detectOpenHandles",
+    "test": "NODE_ENV=test jest --no-cache --runInBand --forceExit",
     "test:staged": "jest --passWithNoTests",
     "dev": "nodemon",
     "build": "tsc -b",
@@ -40,10 +40,11 @@
     "lint-staged": "^10.2.2",
     "mongodb-memory-server": "^6.6.1",
     "nodemon": "^2.0.4",
+    "sonarqube-scanner": "^2.6.0",
     "supertest": "^4.0.2",
     "ts-jest": "^25.5.1",
     "ts-node": "^8.10.1",
-    "typescript": "^3.9.2"
+    "typescript": "3.7.5"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
