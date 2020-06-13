@@ -19,7 +19,7 @@ beforeAll(async () => {
   })
   mongoServer = new MongoMemoryServer()
   const mongoUri = await mongoServer.getUri()
-  process.env.MONGO_URL = mongoUri
+  process.env.MONGODB_URI = mongoUri
   app = new App([ToolController], 3000)
 })
 

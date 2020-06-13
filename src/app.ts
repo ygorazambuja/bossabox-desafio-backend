@@ -33,7 +33,7 @@ class App {
 
   private mongooseConnect (): any {
     mongoose
-      .connect(process.env.MONGO_URL, {
+      .connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true
