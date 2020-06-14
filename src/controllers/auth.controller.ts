@@ -2,6 +2,7 @@ import authServices from '../services/auth.services'
 import express, { Request, Response } from 'express'
 import IUser from '../interfaces/user.interface'
 import userServices from '../services/user.services'
+import { check } from 'express-validator'
 
 class AuthController {
   router = express.Router()
@@ -11,8 +12,21 @@ class AuthController {
   }
 
   initializeRoutes (): void {
-    this.router.post('/auth/logIn', this.logIn)
-    this.router.post('/auth/signIn', this.signIn)
+    this.router.post(
+      '/auth/logIn',
+      [check('username').isString(), check('password').isString()],
+      this.logIn
+    )
+    this.router.post(
+      '/auth/signIn',
+      [
+        check('username').isString(),
+        check('name').isString(),
+        check('password').isString(),
+        check('email').isEmail()
+      ],
+      this.signIn
+    )
   }
 
   private async logIn (
@@ -25,7 +39,7 @@ class AuthController {
 
     if (logIn instanceof Error) {
       return response.send({ Error: 'Authentication Failed, user not found' })
-    } else return response.send(logIn)
+    } else return response.status(200).send(logIn)
   }
 
   private async signIn (

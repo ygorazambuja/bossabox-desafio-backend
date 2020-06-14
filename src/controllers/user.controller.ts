@@ -1,6 +1,7 @@
 import userServices from '../services/user.services'
 import IUser from '../interfaces/user.interface'
 import express, { Request, Response } from 'express'
+import { check } from 'express-validator'
 // import { verifyValidToken } from '../middleware/jwtMiddleware'
 
 class UserController {
@@ -12,9 +13,19 @@ class UserController {
 
   initializeRoutes (): void {
     this.router.get('/users', this.getUsers)
-    this.router.post('/users', this.addUser)
+    this.router.post(
+      '/users',
+      [
+        check('username').isString(),
+        check('email').isEmail(),
+        check('password').isString(),
+        check('name').isString()
+      ],
+      this.addUser
+    )
     this.router.delete('/users/:id', this.deleteUser)
-    this.router.put('/users', this.updateUser)
+    this.router.get('/users/:id', this.getUserById)
+    this.router.put('/users', [check('_id').isString()], this.updateUser)
   }
 
   private async getUsers (
@@ -26,6 +37,19 @@ class UserController {
       return response.status(200).send(users)
     } catch (error) {
       return response.status(500).send(error)
+    }
+  }
+
+  private async getUserById (
+    request: Request,
+    response: Response
+  ): Promise<Response<void>> {
+    const { id } = request.params
+    const user = await userServices.getById(id)
+    if (!(user === null) || !(user === undefined)) {
+      return response.status(200).send(user)
+    } else {
+      return response.status(404).send({ error: 'User not found' })
     }
   }
 

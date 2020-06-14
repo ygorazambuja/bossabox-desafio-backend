@@ -123,4 +123,22 @@ describe('Test the User Router', () => {
     expect(body[8]._id).not.toBeNull()
     expect(body[9]._id).not.toBeNull()
   })
+
+  it('should get a user with the ID', async () => {
+    await truncateTable()
+    const user = genNewUser()
+
+    const postResponse = await supertest(app.app)
+      .post('/users')
+      .send(user)
+
+    const getByIdResponse = await supertest(app.app).get(
+      `/users/${postResponse.body._id}`
+    )
+
+    expect(getByIdResponse.body.name).toBe(user.name)
+    expect(getByIdResponse.body.password).not.toBe(user.password)
+    expect(getByIdResponse.body.email).toBe(user.email)
+    expect(getByIdResponse.body.__v).not.toBeNull()
+  })
 })

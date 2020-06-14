@@ -17,7 +17,7 @@ const UserSchema: Schema = new Schema(
       unique: true
     },
     password: { type: String, required: true },
-    name: { type: String }
+    name: { type: String, required: true }
   },
   { timestamps: true }
 )

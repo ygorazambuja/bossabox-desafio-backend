@@ -8,6 +8,7 @@ import authServices from '../../services/auth.services'
 import dotenv from 'dotenv'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import mongoose from 'mongoose'
+import { generateKeyPair } from 'crypto'
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 
@@ -72,5 +73,16 @@ describe('Test the AuthRoutes', () => {
       })
 
     expect(response.body.Error).toBe('Authentication Failed, user not found')
+  })
+
+  it('should get a error when not receive all the arguments to create a user', async () => {
+    const user = genNewUser()
+
+    delete user.name
+    const { body } = await supertest(app.app)
+      .post('/auth/signIn')
+      .send(user)
+
+    expect(body._message).toBe('User validation failed')
   })
 })

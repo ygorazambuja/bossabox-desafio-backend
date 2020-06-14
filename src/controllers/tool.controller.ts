@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express'
 import Tool from '../models/tool.model'
 import ITool from '../interfaces/tool.interface'
 import toolServices from '../services/tool.services'
+import { check } from 'express-validator'
 
 class ToolController {
   router = express.Router()
@@ -13,9 +14,13 @@ class ToolController {
   initializeRoutes (): void {
     this.router.get('/tools', this.getTools)
     this.router.get('/tools/:id', this.getById)
-    this.router.post('/tools', this.addTool)
+    this.router.post(
+      '/tools',
+      [check('title').isString(), check('link').isString()],
+      this.addTool
+    )
     this.router.delete('/tools/:id', this.deleteTool)
-    this.router.put('/tools', this.updateTool)
+    this.router.put('/tools', [check('_id').isString()], this.updateTool)
   }
 
   private async getTools (
