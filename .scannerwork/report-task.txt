@@ -2,5 +2,5 @@ projectKey=typescript-standart-env
 serverUrl=http://localhost:9000
 serverVersion=8.3.1.34397
 dashboardUrl=http://localhost:9000/dashboard?id=typescript-standart-env
-ceTaskId=AXKWRfI-3ukV3oMeLxSr
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXKWRfI-3ukV3oMeLxSr
+ceTaskId=AXK-reVRlrEg3fS5ZVJW
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXK-reVRlrEg3fS5ZVJW

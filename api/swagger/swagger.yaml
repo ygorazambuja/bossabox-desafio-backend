@@ -1,15 +1,324 @@
-swagger: "2.0"
+openapi: 3.0.1
 info:
-  description: "Simples API, desenvolvida para o desafio Bossabox-Backend."
-  version: "1.0.0"
-  title: "VUTTR"
-  termsOfService: "http://swagger.io/terms/"
-  contact:
-    email: "apiteam@swagger.io"
-  license:
-    name: "Apache 2.0"
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "localhost"
-basePath: "/"
-schemes:
-- "http"
+  title: Bossabox Vuttr
+  description: defaultDescription
+  version: '0.1'
+servers:
+  - url: 'https://bossabox-vuttr.herokuapp.com'
+paths:
+  /tools:
+    get:
+      summary: List of Tools
+      operationId: getTools
+      tags:
+        - tools
+      responses:
+        '200':
+          description: Get all Tools in database
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tools'
+    post:
+      summary: Create a Tool
+      operationId: createTool
+      tags:
+        - tools
+      requestBody:
+        description: Tool
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTool'
+      responses:
+        '201':
+          description: 'Returns the created Tool'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+    put:
+      summary: Update a Tool
+      operationId: updateTool
+      tags:
+        - tools
+      requestBody:
+        description: A tool to with the new update information, with the ID
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tool'
+      responses:
+        '200':
+          description: 'Returns the updated tool'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+
+  /tools/{toolId}:
+    get:
+      summary: Info for a specific tool
+      operationId: getToolById
+      tags:
+        - tools
+      parameters:
+        - name: toolId
+          in: path
+          required: true
+          description: The id of the Tool to retrive
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+    delete:
+      summary: Delete a specific tool
+      operationId: deleteToolById
+      tags:
+        - tools
+      parameters:
+        - name: toolId
+          in: path
+          required: true
+          description: The id of the tool to delete
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Expected No Content
+
+  /users:
+    get:
+      summary: Get all Users
+      operationId: getAllUsers
+      tags:
+        - users
+      responses:
+        '200':
+          description: Return all Users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+    post:
+      summary: Add new User
+      operationId: addNewUser
+      tags:
+        - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+      responses:
+        '200':
+          description: Add new User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      summary: Update a User
+      operationId: updateUserById
+      tags:
+        - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Return the updated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /users/{userId}:
+    get:
+      summary: Info for a specific user
+      tags:
+        - users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The id of the User to receive
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected responses to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      summary: Delete a specific User
+      operationId: deleteUserById
+      tags:
+        - users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The id of the User to delete
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Expected No Content
+
+  /auth/logIn:
+    post:
+      summary: Do the Login
+      operationId: logIn
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Auth'
+      responses:
+        '200':
+          description: Return the token and the username
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewAuth'
+
+  /auth/signIn:
+    post:
+      summary: Do the Sign In
+      operationId: signIn
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas'
+      responses:
+        '200':
+          description: Return the token and the username
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewAuth'
+
+components:
+  schemas:
+    Tool:
+      type: object
+      required:
+        - _id
+        - name
+        - description
+        - tags
+        - link
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        link:
+          type: string
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+
+    Tools:
+      type: array
+      items:
+        $ref: '#/components/schemas/Tool'
+
+    NewTool:
+      type: object
+      required:
+        - name
+        - description
+        - tags
+        - link
+      properties:
+        name:
+          type: string
+        link:
+          type: string
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+
+    User:
+      type: object
+      required:
+        - _id
+        - username
+        - password
+        - email
+        - name
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+
+    Users:
+      type: array
+      items:
+        $ref: '#/components/schemas/User'
+
+    NewUser:
+      type: object
+      required:
+        - username
+        - password
+        - email
+        - name
+      properties:
+        name:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+
+    Auth:
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+    NewAuth:
+      required:
+        - username
+        - token
+      properties:
+        username:
+          type: string
+        token:
+          type: string
