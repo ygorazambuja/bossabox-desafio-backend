@@ -3,15 +3,15 @@ import App from '../../../app'
 import supertest from 'supertest'
 import * as faker from 'faker'
 
-import toolServices from '../../../services/tool.services'
-import ITool from '../../../interfaces/tool.interface'
-import IUser from '../../../interfaces/user.interface'
-import IAuth from '../../../interfaces/auth.interface'
-import toolModel from '../../../models/tool.model'
+import toolServices from '@services/tool.services'
+import { ITool } from '@interfaces/tool.interface'
+import { IUser } from '@interfaces/user.interface'
+import { IAuth } from '@interfaces/auth.interface'
+import toolModel from '@models/tool.model'
+import ToolJwtController from '@controllers/jwt/tool.jwt.controller'
+import authServices from '@services/auth.services'
 import dotenv from 'dotenv'
 import { MongoMemoryServer } from 'mongodb-memory-server'
-import ToolJwtController from '../../../controllers/jwt/tool.jwt.controller'
-import authServices from '../../../services/auth.services'
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 let mongoServer

@@ -1,11 +1,10 @@
-import userServices from '../services/user.services'
-import IUser from '../interfaces/user.interface'
-import express, { Request, Response } from 'express'
+import userServices from '@services/user.services'
+import { IUser } from '@interfaces/user.interface'
+import { Request, Response, Router } from 'express'
 import { check } from 'express-validator'
-// import { verifyValidToken } from '../middleware/jwtMiddleware'
 
 class UserController {
-  router = express.Router()
+  router = Router()
 
   constructor () {
     this.initializeRoutes()

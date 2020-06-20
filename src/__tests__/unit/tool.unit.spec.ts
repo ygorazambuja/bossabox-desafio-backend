@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { MongoMemoryServer } from 'mongodb-memory-server'
-import toolServices from '../../services/tool.services'
+import toolServices from '@services/tool.services'
 import mongoose from 'mongoose'
 import * as faker from 'faker'
 

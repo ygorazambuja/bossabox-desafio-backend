@@ -3,11 +3,11 @@ import App from '../../app'
 import supertest from 'supertest'
 import * as faker from 'faker'
 
-import UserController from '../../controllers/user.controller'
+import UserController from '@controllers/user.controller'
 
-import IUser from '../../interfaces/user.interface'
-import userModel from '../../models/user.model'
-import userServices from '../../services/user.services'
+import { IUser } from '@interfaces/user.interface'
+import userModel from '@models/user.model'
+import userServices from '@services/user.services'
 import dotenv from 'dotenv'
 
 import { MongoMemoryServer } from 'mongodb-memory-server'

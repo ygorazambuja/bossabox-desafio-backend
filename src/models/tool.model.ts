@@ -1,11 +1,5 @@
-import mongoose, { Schema, Document } from 'mongoose'
-
-export interface IToolDocument extends Document {
-  title: string
-  link: string
-  description: string
-  tags: string[]
-}
+import mongoose, { Schema } from 'mongoose'
+import { IToolDocument } from '@interfaces/tool.interface'
 
 const ToolSchema: Schema = new Schema({
   title: { type: String, required: true },

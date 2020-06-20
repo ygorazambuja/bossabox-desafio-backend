@@ -1,8 +1,8 @@
-import userServices from '../../services/user.services'
-import IUser from '../../interfaces/user.interface'
+import userServices from '@services/user.services'
+import { IUser } from '@interfaces/user.interface'
 import { Router, Request, Response } from 'express'
 import { check } from 'express-validator'
-import { verifyValidToken } from '../../middleware/jwtMiddleware'
+import { verifyValidToken } from '@middlewares/jwtMiddleware'
 
 class UserJwtController {
   router = Router()

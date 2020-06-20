@@ -1,11 +1,11 @@
-import express, { Request, Response } from 'express'
-import Tool from '../models/tool.model'
-import ITool from '../interfaces/tool.interface'
-import toolServices from '../services/tool.services'
+import { Request, Response, Router } from 'express'
+import Tool from '@models/tool.model'
+import { ITool } from '@interfaces/tool.interface'
+import toolServices from '@services/tool.services'
 import { check } from 'express-validator'
 
 class ToolController {
-  router = express.Router()
+  router = Router()
 
   constructor () {
     this.initializeRoutes()

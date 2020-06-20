@@ -1,14 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as faker from 'faker'
-import IUser from '../../interfaces/user.interface'
+import { IUser } from '@interfaces/user.interface'
 import supertest from 'supertest'
 import App from '../../app'
-import AuthController from '../../controllers/auth.controller'
-import authServices from '../../services/auth.services'
+import AuthController from '@controllers/auth.controller'
+import authServices from '@services/auth.services'
 import dotenv from 'dotenv'
 import { MongoMemoryServer } from 'mongodb-memory-server'
-import mongoose from 'mongoose'
-import { generateKeyPair } from 'crypto'
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 

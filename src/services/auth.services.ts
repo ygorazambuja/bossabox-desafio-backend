@@ -1,6 +1,6 @@
-import IUser from '../interfaces/user.interface'
+import { IUser } from '@interfaces/user.interface'
 import jwt from 'jsonwebtoken'
-import userServices from './user.services'
+import userServices from '@services/user.services'
 import { compareSync } from 'bcrypt'
 
 class AuthService {

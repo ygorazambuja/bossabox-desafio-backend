@@ -1,7 +1,8 @@
-import authServices from '../services/auth.services'
+import authServices from '@services/auth.services'
 import express, { Request, Response } from 'express'
-import IUser from '../interfaces/user.interface'
-import userServices from '../services/user.services'
+import { IUser } from '@interfaces/user.interface'
+import userServices from '@services/user.services'
+
 import { check } from 'express-validator'
 
 class AuthController {

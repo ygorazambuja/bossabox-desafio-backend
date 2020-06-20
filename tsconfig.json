@@ -2,11 +2,36 @@
   "compilerOptions": {
     "outDir": "./dist",
     "module": "commonjs",
-    "target": "es2019",
+    "target": "es2017",
+    "lib": [
+      "ES6"
+    ],
     "esModuleInterop": true,
     "allowJs": true,
     "moduleResolution": "node",
-    "rootDir": "."
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "removeComments": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@interfaces/*": [
+        "./src/interfaces/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "@models/*": [
+        "./src/models/*"
+      ],
+      "@middlewares/*": [
+        "./src/middlewares/*"
+      ],
+      "@controllers/*": [
+        "./src/controllers/*"
+      ]
+    }
   },
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*"
+  ]
 }

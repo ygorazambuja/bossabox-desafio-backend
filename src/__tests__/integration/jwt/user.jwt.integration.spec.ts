@@ -3,20 +3,20 @@ import App from '../../../app'
 import supertest from 'supertest'
 import * as faker from 'faker'
 
-import IUser from '../../../interfaces/user.interface'
-import IAuth from '../../../interfaces/auth.interface'
-import userModel from '../../../models/user.model'
-import userServices from '../../../services/user.services'
+import { IUser } from '@interfaces/user.interface'
+import { IAuth } from '@interfaces/auth.interface'
+import userModel from '@models/user.model'
+import userServices from '@services/user.services'
 import dotenv from 'dotenv'
 
 import { MongoMemoryServer } from 'mongodb-memory-server'
-import UserJwtController from '../../../controllers/jwt/user.jwt.controller'
-import authServices from '../../../services/auth.services'
+import UserJwtController from '@controllers/jwt/user.jwt.controller'
+import authServices from '@services/auth.services'
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 
 let app
-let mongoServer
+let mongoServer: MongoMemoryServer
 
 beforeAll(async () => {
   dotenv.config({

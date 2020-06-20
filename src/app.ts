@@ -1,10 +1,10 @@
-import express from 'express'
+import express, { Application } from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
 class App {
-  public app: express.Application
+  public app: Application
   public port: number
 
   constructor (controllers: any[], port) {

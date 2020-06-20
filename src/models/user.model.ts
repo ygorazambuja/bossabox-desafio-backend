@@ -1,12 +1,6 @@
-import mongoose, { Schema, Document } from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
 import bcrypt from 'bcrypt'
-
-export interface IUserDocument extends Document {
-  username: string
-  password: string
-  name: string
-  email: string
-}
+import { IUserDocument } from '@interfaces/user.interface'
 
 const UserSchema: Schema = new Schema(
   {

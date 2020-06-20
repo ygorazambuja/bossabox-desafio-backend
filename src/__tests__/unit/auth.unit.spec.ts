@@ -1,9 +1,9 @@
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import mongoose from 'mongoose'
 import * as faker from 'faker'
-import IUser from '../../interfaces/user.interface'
-import userServices from '../../services/user.services'
-import authServices from '../../services/auth.services'
+import { IUser } from '@interfaces/user.interface'
+import userServices from '@services/user.services'
+import authServices from '@services/auth.services'
 import dotenv from 'dotenv'
 
 let mongoServer: MongoMemoryServer
