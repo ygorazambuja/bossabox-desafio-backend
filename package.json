@@ -1,16 +1,14 @@
 {
   "name": "typescript-standart-env",
   "version": "1.0.0",
-  "description": "",
+  "description": "Api da Aplicação - VUTTR (Very Useful Tools to Remember), é um simples repositório para gerenciar ferramentas com seus respectivos nomes, links, descrições e tags.",
   "main": "index.js",
   "scripts": {
+    "test:staged": "jest --forceExit --no-cache --runInBand --passWithNoTests",
     "test": "NODE_ENV=test jest --no-cache --forceExit",
-    "test:staged": "jest --forceExit --no-cache",
-    "postinstall": "tsc -b",
     "dev": "nodemon",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist/src --copy-files --no-copy-ignored",
     "start": "node dist/src/server.js",
-    "watch": "ts-node --inspect src/server.ts",
     "test:watch": "jest --watch"
   },
   "keywords": [],

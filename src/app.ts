@@ -21,7 +21,7 @@ class App {
     this.app.use(cors())
   }
 
-  private initializeMiddlewares (): any {
+  private initializeMiddlewares (): void {
     this.app.use(express.json())
   }
 
@@ -31,7 +31,7 @@ class App {
     })
   }
 
-  private mongooseConnect (): any {
+  private mongooseConnect (): void {
     mongoose
       .connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,

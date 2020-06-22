@@ -3,7 +3,8 @@ import { IToolDocument } from '@interfaces/tool.interface'
 
 class ToolService {
   async insert (tool): Promise<IToolDocument> {
-    return await Tool.create(tool)
+    const newTool = await Tool.create(tool)
+    return newTool
   }
 
   async delete (id: string): Promise<IToolDocument> {
