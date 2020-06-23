@@ -60,6 +60,12 @@ Link do [SonarQube docker-compose.yml](sonarscanner-docker-compose.yml)
 
 **Nodemon** para live-reload da aplicação enquanto desenvolvemos.
 
+
+Para executarmos a aplicação em ambiente de desenvolvimento precisamos ter uma instancia do mongodb rodando na porta **27017**, deixei a execução do **mongodb** por conta do **Docker** no [ShellScript](mongodb-dev.sh)
+
+
+MongoDB rodando, é só executar no terminal ```npm run dev```
+
 ## Aplicação de Fato
 
 Como o solicitado, foi feitas as rotas primeiramente _Sem autenticação_, porem como bonus foram feitas as mesmas rotas utilizando autenticação _JWT_, e para criação dos usuarios foi feito um simples cadastro de usuário.
