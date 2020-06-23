@@ -8,7 +8,7 @@
     "test": "NODE_ENV=test jest --no-cache --forceExit",
     "dev": "nodemon",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist/src --copy-files --no-copy-ignored",
-    "start": "node dist/src/server.js",
+    "start": "pm2-docker dist/src/server.js",
     "test:watch": "jest --watch"
   },
   "keywords": [],
@@ -58,6 +58,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.5.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.19"
+    "mongoose": "^5.9.19",
+    "pm2": "^4.4.0"
   }
 }
