@@ -2,6 +2,7 @@ import express, { Application } from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
+import helmet from 'helmet'
 
 class App {
   public app: Application
@@ -19,6 +20,7 @@ class App {
     this.mongooseConnect()
     this.initializeControllers(controllers)
     this.app.use(cors())
+    this.app.use(helmet())
   }
 
   private initializeMiddlewares (): void {
