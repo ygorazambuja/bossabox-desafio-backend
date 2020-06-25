@@ -17,11 +17,13 @@ const UserSchema: Schema = new Schema(
 )
 
 UserSchema.pre<IUserDocument>('save', function (next) {
-  if (!this.isModified('password')) {
-    return next()
-  }
   this.password = bcrypt.hashSync(this.password, 10)
   next()
+})
+
+UserSchema.pre('updateOne', async function (next) {
+  const docToUpdate = this.getUpdate()
+  docToUpdate.password = await bcrypt.hashSync(docToUpdate.password, 10)
 })
 
 export default mongoose.model<IUserDocument>('User', UserSchema)

@@ -157,4 +157,13 @@ describe('Test the User Router', () => {
     expect(getByIdResponse.body.email).toBe(user.email)
     expect(getByIdResponse.body.__v).not.toBeNull()
   })
+
+  it('should receive a No Authorization Error', async () => {
+    const { token } = await getValidAuthentication()
+
+    const invalidToken = `${token}invalid`
+    const { body } = await supertest(app.app).get('/jwt/users').set({ authorization: invalidToken }).expect(401)
+
+    expect(body).toMatchObject({ Error: 'No Authorization' })
+  })
 })

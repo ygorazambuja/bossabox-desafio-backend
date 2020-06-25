@@ -219,14 +219,14 @@ components:
       type: object
       required:
         - _id
-        - name
+        - title
         - description
         - tags
         - link
       properties:
         _id:
           type: string
-        name:
+        title:
           type: string
         link:
           type: string
@@ -245,12 +245,12 @@ components:
     NewTool:
       type: object
       required:
-        - name
+        - title
         - description
         - tags
         - link
       properties:
-        name:
+        title:
           type: string
         link:
           type: string

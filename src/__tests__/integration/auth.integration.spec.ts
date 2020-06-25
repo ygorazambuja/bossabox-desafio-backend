@@ -83,4 +83,17 @@ describe('Test the AuthRoutes', () => {
 
     expect(body._message).toBe('User validation failed')
   })
+
+  it('should get a Duplicate Keys error', async () => {
+    const user = genNewUser()
+    await supertest(app.app)
+      .post('/auth/signIn')
+      .send(user)
+
+    const { body } = await supertest(app.app)
+      .post('/auth/signIn')
+      .send(user).expect(500)
+
+    expect(body).toMatchObject({ error: 'Duplicate Keys' })
+  })
 })

@@ -5,6 +5,7 @@ import userServices from '@services/user.services'
 import mongoose from 'mongoose'
 import * as faker from 'faker'
 import { IUser } from '@interfaces/user.interface'
+import { compareSync } from 'bcrypt'
 
 let mongoServer: MongoMemoryServer
 
@@ -102,7 +103,8 @@ describe('User Unit Testing', () => {
       _id: response._id,
       name: response.name,
       email: response.email,
-      username: 'node'
+      username: 'node',
+      password: user.password
     })
 
     const updatedUser = await userServices.getById(response.id)
@@ -112,5 +114,26 @@ describe('User Unit Testing', () => {
     expect(updatedUser.email).toBe(response.email)
     expect(updatedUser.username).toBe('node')
     expect(updatedUser.__v).toBe(0)
+  })
+
+  it('should update a password', async () => {
+    const user = genNewUser()
+    const response = await userServices.insert(user)
+
+    const passwd = faker.internet.password(8)
+
+    await userServices.update({
+      _id: response._id,
+      name: response.name,
+      email: response.email,
+      password: passwd
+    })
+
+    const updatedUser = await userServices.getById(response.id)
+
+    expect(updatedUser.password).not.toBe(user.password)
+    expect(updatedUser.password).not.toBe(passwd)
+
+    expect(compareSync(passwd, updatedUser.password)).toBeTruthy()
   })
 })
