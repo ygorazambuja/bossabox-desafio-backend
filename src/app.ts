@@ -14,13 +14,14 @@ class App {
     })
 
     this.app = express()
+    this.app.use(cors())
+    this.app.use(helmet())
+
     this.port = port
 
     this.initializeMiddlewares()
     this.mongooseConnect()
     this.initializeControllers(controllers)
-    this.app.use(cors())
-    this.app.use(helmet())
   }
 
   private initializeMiddlewares (): void {
