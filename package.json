@@ -22,7 +22,7 @@
     "@types/bcrypt": "^3.0.0",
     "@types/cors": "^2.8.6",
     "@types/dotenv": "^8.2.0",
-    "@types/express": "^4.17.6",
+    "@types/express": "^4.17.8",
     "@types/faker": "^4.1.12",
     "@types/jest": "^26.0.0",
     "@types/jsonwebtoken": "^8.5.0",
